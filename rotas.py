@@ -5,7 +5,7 @@ import os
 import tempfile
 
 def download_audio(url):
-    temp_dir = tempfile.mkdtemp()
+    temp_dir = tempfile.mkdtemp(dir='/tmp')
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
