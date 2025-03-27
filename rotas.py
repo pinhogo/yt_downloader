@@ -18,7 +18,7 @@ def download_audio(url):
         # Configurações anti-bloqueio
         'extractor_args': {
             'youtube': {
-                'player_client': ['android', 'web'],
+                'player_client': ['android_embedded', 'web'],
                 'skip': ['hls', 'dash'],
             }
         },
