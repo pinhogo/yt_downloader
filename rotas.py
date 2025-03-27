@@ -11,9 +11,13 @@ def download_audio(url):
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
+            'preferredquality': '192',
         }],
-        'outtmpl': os.path.join(temp_dir, 'audio.%(ext)s'),
+        'outtmpl': 'audio.%(ext)s',  # Arquivo será salvo como "audio.mp3" no diretório atual
         'quiet': True,
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        }
     }
     
     try:
