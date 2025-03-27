@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-sudo apt-get update
-sudo apt-get install -y ffmpeg
+conda install -c conda-forge ffmpeg -y
+pip install --upgrade pip
 pip install -r requirements.txt
