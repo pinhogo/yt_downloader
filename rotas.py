@@ -13,7 +13,7 @@ def download_audio(url):
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'outtmpl': 'audio.%(ext)s',
+        'outtmpl': os.path.join(temp_dir, 'audio.%(ext)s'),
         'quiet': True,
         # Configurações anti-bloqueio
         'extractor_args': {
@@ -28,7 +28,9 @@ def download_audio(url):
             'Referer': 'https://www.youtube.com/',
         },
         'cookiefile': 'cookies.txt',  # Arquivo com cookies de sessão
-        'ignoreerrors': True,
+        'retries': 10,
+        'fragment_retries': 10,
+        'ignoreerrors': False
     }
     
     try:
