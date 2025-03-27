@@ -4,6 +4,21 @@ import yt_dlp
 import os
 import tempfile
 
+# ===== VERIFICAÇÃO DO FFMPEG =====
+def check_ffmpeg():
+    try:
+        # Verifica se o FFmpeg está instalado e acessível
+        exit_code = os.system('ffmpeg -version > /dev/null 2>&1')
+        if exit_code != 0:
+            raise RuntimeError("FFmpeg não está instalado ou não está no PATH")
+        print("✅ FFmpeg está disponível")
+    except Exception as e:
+        print(f"❌ Erro ao verificar FFmpeg: {str(e)}")
+        exit(1)
+
+check_ffmpeg()  # Executa a verificação quando o app inicia
+# ================================
+
 def download_audio(url):
     temp_dir = tempfile.mkdtemp(dir='/tmp')
     ydl_opts = {
