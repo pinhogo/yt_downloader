@@ -52,15 +52,16 @@ def baixar_audio():
         return "URL inválido", 400
     
     mp3_file = download_audio(url)
-    if mp3_file:
-        try:
-            return send_file(
-                mp3_file,
-                as_attachment=True,
-                download_name='audio.mp3'
+    if mp3_file and os.path.exists(mp3_file):
+            try:
+                response = send_file(
+                    mp3_file,
+                    as_attachment=True,
+                    download_name='audio.mp3'
             )
-        finally:
-            if os.path.exists(mp3_file):
-                os.remove(mp3_file)
-                os.rmdir(os.path.dirname(mp3_file))
+                return response
+            finally:
+                if os.path.exists(mp3_file):
+                    os.remove(mp3_file)
+                    os.rmdir(os.path.dirname(mp3_file))
     return "Falha no download", 500
