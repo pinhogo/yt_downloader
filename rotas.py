@@ -3,6 +3,9 @@ from main import app
 import yt_dlp
 import os
 import tempfile
+import random
+
+cookies_files = ['cookies1.txt', 'cookies2.txt', 'cookies3.txt']
 
 # ===== VERIFICAÇÃO DO FFMPEG =====
 def check_ffmpeg():
@@ -42,7 +45,7 @@ def download_audio(url):
             'Accept-Language': 'en-US,en;q=0.9',
             'Referer': 'https://www.youtube.com/',
         },
-        'cookiefile': 'cookies.txt',  # Arquivo com cookies de sessão
+        'cookiefile': random.choice(cookies_files),
         'retries': 10,
         'fragment_retries': 10,
         'ignoreerrors': False
