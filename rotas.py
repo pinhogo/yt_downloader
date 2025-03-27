@@ -13,11 +13,22 @@ def download_audio(url):
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'outtmpl': 'audio.%(ext)s',  # Arquivo será salvo como "audio.mp3" no diretório atual
+        'outtmpl': 'audio.%(ext)s',
         'quiet': True,
+        # Configurações anti-bloqueio
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'web'],
+                'skip': ['hls', 'dash'],
+            }
+        },
         'http_headers': {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        }
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Referer': 'https://www.youtube.com/',
+        },
+        'cookiefile': 'cookies.txt',  # Arquivo com cookies de sessão
+        'ignoreerrors': True,
     }
     
     try:
